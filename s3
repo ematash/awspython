@@ -1,0 +1,24 @@
+#creating s3 bucket
+import boto3
+s3 = boto3.client('s3')
+s3.create_bucket(Bucket='jekwa')
+
+#uploading file to s3
+import boto3
+import os
+s3 = boto3.resource('s3')
+data = open('/Users/etashtanbekov/Desktop/test.jpeg', 'rb')
+s3.Bucket('mewokbucket').put_object(Key='test.jpeg', Body=data)
+
+#deleting file in s3 
+import boto3
+s3 = boto3.resource('s3')
+client = boto3.client('s3')
+client.delete_object(Bucket='mewokbucket', Key='test.jpeg')
+
+#lists all s3 buckets
+import boto3
+s3 = boto3.resource('s3')
+for bucket in s3.buckets.all():
+    print(bucket.name)
+#deleting bucket
